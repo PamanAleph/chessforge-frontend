@@ -5,9 +5,10 @@ import { Chessboard } from "react-chessboard";
 type Props = {
   initialMoves: { from: string; to: string }[];
   onPlayerMove: (from: string, to: string) => void;
+  disabled?: boolean;
 };
 
-export function Board({ initialMoves, onPlayerMove }: Props) {
+export function Board({ initialMoves, onPlayerMove,disabled }: Props) {
   const [game] = useState(new Chess());
   const [fen, setFen] = useState("start");
 
@@ -32,6 +33,7 @@ export function Board({ initialMoves, onPlayerMove }: Props) {
     <Chessboard
       position={fen}
       onPieceDrop={(from, to) => {
+        if (disabled) return false;
         handleMove(from, to);
         return true;
       }}

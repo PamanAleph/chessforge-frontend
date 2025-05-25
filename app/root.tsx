@@ -9,6 +9,7 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 const queryClient = new QueryClient();
 
 
@@ -46,6 +47,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster position="top-right"/>
         <Outlet />
     </QueryClientProvider>
   );
